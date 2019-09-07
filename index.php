@@ -14,8 +14,7 @@ $router->get('/', function ($req, $res) {
     $res->render('index');
 });
 
-$router->get('/page/:id', function ($req, $res) {
-    var_dump('asdasd');
+$router->get('/page/:slug', function ($req, $res) {
     try {
         $pdo = new PDO('mysql:host=127.0.0.1;dbname=express_php;charset=utf8mb4', 'root', '', [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -23,8 +22,8 @@ $router->get('/page/:id', function ($req, $res) {
             PDO::ATTR_EMULATE_PREPARES   => false,
         ]);
 
-        $stmt = $pdo->prepare('SELECT * FROM pages WHERE id=:id LIMIT 1');
-        $stmt->execute(['id' => $req->params->id]);
+        $stmt = $pdo->prepare('SELECT * FROM pages WHERE slug=:slug LIMIT 1');
+        $stmt->execute(['slug' => $req->params->slug]);
         $page = $stmt->fetch();
 
         $res->render('page', [

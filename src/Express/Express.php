@@ -118,7 +118,7 @@ class Express
 	{
 		$this->current = $this->parse((isset($_GET['route'])) ? $_GET['route'] : '/');
 		$this->method = $_SERVER['REQUEST_METHOD'];
-		$this->headers = apache_request_headers();
+//		$this->headers = apache_request_headers();
 		$this->cookies = (object) $_COOKIE;
 		$this->locals = new \stdClass;
 
